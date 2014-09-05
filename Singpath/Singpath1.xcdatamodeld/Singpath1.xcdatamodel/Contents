@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Achievments" representedClassName="Achievments" syncable="YES">
+        <attribute name="descrip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unlocked" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="usersAchievments" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Users" inverseName="hasAchievments" inverseEntity="Users" syncable="YES"/>
+    </entity>
+    <entity name="Levels" representedClassName="Levels" syncable="YES">
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="downloaded" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="levelId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="levelName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="levelNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pathId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="points" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="stars" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="levelPath" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Paths" inverseName="pathLevels" inverseEntity="Paths" syncable="YES"/>
+        <relationship name="levelQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Questions" inverseName="questionLevel" inverseEntity="Questions" syncable="YES"/>
+    </entity>
+    <entity name="Paths" representedClassName="Paths" syncable="YES">
+        <attribute name="downloaded" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="pathId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pathName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pathLevels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Levels" inverseName="levelPath" inverseEntity="Levels" syncable="YES"/>
+    </entity>
+    <entity name="Questions" representedClassName="Questions" syncable="YES">
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="levelId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nonCompilableTries" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="questionId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="wrongCompilableTries" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="questionLevel" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Levels" inverseName="levelQuestions" inverseEntity="Levels" syncable="YES"/>
+    </entity>
+    <entity name="Settings" representedClassName="Settings" syncable="YES">
+        <attribute name="autoAdvance" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="autoComplete" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <entity name="Story" representedClassName="Story" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="storyPaths" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoryPaths" inverseName="pathsStory" inverseEntity="StoryPaths" syncable="YES"/>
+    </entity>
+    <entity name="StoryLevels" representedClassName="StoryLevels" syncable="YES">
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="levelId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="levelName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="levelNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="pathId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storyId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="video" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="hasPath" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="StoryPaths" inverseName="pathsLevel" inverseEntity="StoryPaths" syncable="YES"/>
+        <relationship name="hasQuestions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoryQuestions" inverseName="questionLevel" inverseEntity="StoryQuestions" syncable="YES"/>
+    </entity>
+    <entity name="StoryPaths" representedClassName="StoryPaths" syncable="YES">
+        <attribute name="pathId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pathName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="storyId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="pathsLevel" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StoryLevels" inverseName="hasPath" inverseEntity="StoryLevels" syncable="YES"/>
+        <relationship name="pathsStory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Story" inverseName="storyPaths" inverseEntity="Story" syncable="YES"/>
+    </entity>
+    <entity name="StoryQuestions" representedClassName="StoryQuestions" syncable="YES">
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="levelId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="pathId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questionId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="questionLevel" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="StoryLevels" inverseName="hasQuestions" inverseEntity="StoryLevels" syncable="YES"/>
+    </entity>
+    <entity name="Users" representedClassName="Users" syncable="YES">
+        <attribute name="sound" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="hasAchievments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Achievments" inverseName="usersAchievments" inverseEntity="Achievments" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Achievments" positionX="288" positionY="210" width="128" height="105"/>
+        <element name="Levels" positionX="-45" positionY="-12" width="128" height="210"/>
+        <element name="Paths" positionX="133" positionY="-90" width="128" height="105"/>
+        <element name="Questions" positionX="286" positionY="-0" width="128" height="150"/>
+        <element name="Settings" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Story" positionX="126" positionY="45" width="128" height="90"/>
+        <element name="StoryLevels" positionX="160" positionY="192" width="128" height="180"/>
+        <element name="StoryPaths" positionX="135" positionY="54" width="128" height="120"/>
+        <element name="StoryQuestions" positionX="144" positionY="63" width="128" height="135"/>
+        <element name="Users" positionX="-45" positionY="240" width="128" height="75"/>
+    </elements>
+</model>

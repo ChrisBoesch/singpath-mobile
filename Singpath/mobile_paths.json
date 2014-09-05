@@ -1,0 +1,26 @@
+[
+  {
+    "pathModified": "2012-05-22 03:51:12.291919",
+    "name": "Beginner Python",
+    "price": 0.0,
+    "free": true,
+    "number_of_problemsets": 6,
+    "path_id": 6920762,
+    "purchased": false,
+    "number_of_problems": 101,
+    "number_of_solved_problems": 102,
+    "description": "Beginner Python"
+  },
+  {
+    "pathModified": "2012-08-29 02:53:32.616533",
+    "name": "Beginner Java",
+    "price": 0.0,
+    "free": true,
+    "number_of_problemsets": 6,
+    "path_id": 8113761,
+    "purchased": false,
+    "number_of_problems": 81,
+    "number_of_solved_problems": 0,
+    "description": "Beginner Java Path"
+  }
+]
